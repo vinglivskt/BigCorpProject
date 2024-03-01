@@ -11,6 +11,15 @@ from .forms import LoginForm, UserCreateForm, UserUpdateForm
 
 # Register new user
 def register_user(request):
+    """
+    Register a new user with the provided request object.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        A rendered HTML page or a redirect to the email verification sent page.
+    """
     if request.method == 'POST':
         form = UserCreateForm(request.POST)
 
@@ -36,6 +45,9 @@ def register_user(request):
 
 
 def login_user(request):
+    """
+    A function to handle user login. It takes a request object as a parameter and performs the login logic based on the request method and user authentication status.
+    """
     form = LoginForm()
 
     if request.user.is_authenticated:
@@ -63,17 +75,34 @@ def login_user(request):
 
 
 def logout_user(request):
+    """
+    Logs out the user and redirects to the 'shop:products' page.
+
+    Parameters:
+    request : object
+        The request object containing user information.
+
+    Returns:
+    object
+        A redirect response to the 'shop:products' page.
+    """
     logout(request)
     return redirect('shop:products')
 
 
 @login_required(login_url='account:login')
 def dashboard_user(request):
+    """
+    View for the dashboard user with login required.
+    """
     return render(request, 'account/dashboard/dashboard.html')
 
 
 @login_required(login_url='account:login')
 def profile_user(request):
+    """
+    View for managing user profile. Requires user to be logged in. Uses UserUpdateForm to update user information.
+    """
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=request.user)
 
@@ -92,6 +121,9 @@ def profile_user(request):
 
 @login_required(login_url='account:login')
 def delete_user(request):
+    """
+    This function deletes a user. It requires the request object as a parameter and does not return a value.
+    """
     user = User.objects.get(id=request.user.id)
     if request.method == 'POST':
         user.delete()

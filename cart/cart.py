@@ -3,7 +3,7 @@ from decimal import Decimal
 from shop.models import ProductProxy
 
 
-class Cart():
+class Cart:
 
     def __init__(self, request) -> None:
 
@@ -16,15 +16,16 @@ class Cart():
 
         self.cart = cart
 
-    
     def __len__(self):
         return sum(item['qty'] for item in self.cart.values())
 
     def __iter__(self):
+        """
+        Returns an iterator that yields items in the cart with additional product information.
+        """
         product_ids = self.cart.keys()
         products = ProductProxy.objects.filter(id__in=product_ids)
         cart = self.cart.copy()
-
 
         for product in products:
             cart[str(product.id)]['product'] = product
@@ -40,13 +41,21 @@ class Cart():
 
         if product_id not in self.cart:
             self.cart[product_id] = {'qty': quantity, 'price': str(product.price)}
-        
+
         self.cart[product_id]['qty'] = quantity
 
         self.session.modified = True
 
-    
     def delete(self, product):
+        """
+        Deletes the specified product from the cart.
+
+        Parameters:
+            product: The product to be deleted.
+
+        Returns:
+            None
+        """
         product_id = str(product)
         if product_id in self.cart:
             del self.cart[product_id]
