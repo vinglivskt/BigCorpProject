@@ -19,6 +19,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="font-awesome" level="application" />
+    <orderEntry type="library" name="jquery-3.5.1" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
@@ -26,6 +29,8 @@
       <list>
         <option value="$MODULE_DIR$/account/templates" />
         <option value="$MODULE_DIR$/shop/templates" />
+        <option value="$MODULE_DIR$/payment/templates" />
+        <option value="$MODULE_DIR$/BigCorpProject/templates" />
       </list>
     </option>
   </component>
