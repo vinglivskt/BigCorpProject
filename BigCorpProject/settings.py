@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-
+from django.contrib import messages
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,16 +26,19 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_email_verification',
     'sorl.thumbnail',
-    # google fonts
-    'django_google_fonts',
     'django_celery_beat',
     'django_celery_results',
+    'django_htmx',
+    # google fonts
+    'django_google_fonts',
+
 
     # apps
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'account.apps.AccountConfig',
-    'payment.apps.PaymentConfig'
+    'payment.apps.PaymentConfig',
+    'recommend.apps.RecommendConfig',
 ]
 
 MIDDLEWARE = [
@@ -44,6 +47,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -109,6 +113,13 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [BASE_DIR / 'BigCorpProject/static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }
 
 # CRISPY FORMS
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
