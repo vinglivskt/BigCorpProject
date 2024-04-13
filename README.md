@@ -31,11 +31,10 @@ Big Corp Shop Project - это Django ecommerce проект с API и разл�
 - Gunicorn
 - API
 - Swagger и Redoc Docs
-- Цветок сельдерея
 - Stripe
 - Yookassa
 - Django Rest Framework
 - Docker
 - Docker Compose
-- Действия GitHub
+- GitHub
 - Git
