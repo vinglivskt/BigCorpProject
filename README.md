@@ -1,7 +1,7 @@
 # Big Corp Shop Project
 
 ## Описание
-Big Corp Shop Project - это Django ecommerce проект с API и различными функциями.
+Big Corp Shop Project - это Django проект с API и различными функциями.
 
 
 ## Установка
